@@ -1,0 +1,41 @@
+
+ROTEIRO DO CURSO DE SQL - HASHTAG IMPRESSIONADOR
+
+1º - CRIE UM REPOSITORIO NO GITHUB.COM 
+
+2º - COPIAR A URL PARA CRIAÇÃO DO REPOSITORIO LOCAL
+     - CODIGO
+        - Copiar a URL para criação do Repositório LOCAL
+            - https://github.com/jcharlescm/Curso-SQL.git
+
+3º - ABRIR A PASTA DO REPOSITORIO LOCAL COM O VISUAL CODE - VSCODE
+    - Vá até a pasta criada para o repositório local com o Windows Explorer
+        - Selecione a barra de endereço e digite $ CMD
+            - Depois digite $ CODE . (abrirar o VSCODE)
+
+4º - AO ABRIR O VSCODE
+    - Clicar em Terminal / Novo Terminal
+        - Ao abrir o terminal no lado direito na seta(+V) para abrir o Terminal bash
+            - Clique em bash e abrirá o terminal $
+                - $ git clone https://github.com/jcharlescm/Curso-SQL.git
+				
+5º - INSTALAR SQL SERVER 
+	- https://www.microsoft.com/pt-br/sql-server/sql-server-downloads
+		- SQL Server 2022 Express
+			- SQL2022-SSEI-Expr.exe
+            - Instalar o SSMS - SQL Server Management Studio
+			Obs.: Não vincular o SSMS a uma conta da Microsoft ou GITHUB
+			
+6º - Configurar o SSMS
+    - Quando abrir o SSMS(executar como ADMINISTRADOR) o nome da máquina e servidor. Ex.: SICTEC-0041\SQLEXPRESS   --->>> nome da minha máquina e o nome do meu servidor Windows(fictício)
+    - Selecionar OPCIONAL
+
+7º - RESTAURAR BANCO DE DADOS
+    - Clicar com o botão direito em "BANCOS DE DADOS / RESTAURAR BANCO DE DADOS (O BD já está criado é o CONTOSO da microsoft)
+    - Clicar em DISPOSITIVO e ... (3 pontos) e procurar/adicionar o arquivo do BD CONTOSO (ContosRetailDW.bak)
+    - OK - Banco de dados CONTOSORETAILDW restaurado com sucesso.
+
+
+
+				
+                
