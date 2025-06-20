@@ -1,9 +1,10 @@
 -- [SQL Server] CRUD
 -- Aula 13 de 21 - Código da tabela utilizada nos próximos exemplos
 
-
+-- Usar o Banco
 USE BDImpressionador
 
+-- Criar tabela Funcionários
 CREATE TABLE Funcionarios(
 	id_funcionario int,
 	nome_funcionario varchar(100),
@@ -11,6 +12,9 @@ CREATE TABLE Funcionarios(
 	data_nascimento date
 )
 
+--- Atualiza Banco de Dados - Atualizar(F5)
+
+-- Inserir dados na tabela Funcionários
 INSERT INTO Funcionarios(id_funcionario, nome_funcionario, salario, data_nascimento)
 VALUES
 	(1, 'Lucas'		, 1500, '20/03/1990'),

@@ -1,8 +1,7 @@
 -- [SQL Server] Funções Condicionais
+
 -- Aula 6 de 18: CASE com os operadores lógicos AND e OR
-
 -- Faça uma consulta à tabela DimProduct e retorne as colunas ProductName, BrandName, ColorName, UnitPrice e uma coluna de preço com desconto.
-
 -- a) Caso o produto seja da marca Contoso E da cor Red, o desconto do produto será de 10%. Caso contrário, não terá nenhum desconto.
 
 
