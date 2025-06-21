@@ -4,7 +4,6 @@
 
 -- Exemplo 2: Faça uma consulta para retornar os produtos da categoria 'Televisions'. Tome cuidado pois não temos a informação de Nome da Subcategoria na tabela DimProduct. Dessa forma, precisaremos criar um SELECT que descubra o ID da categoria 'Televisions' e passar esse resultado como o valor que queremos filtrar dentro do WHERE.
 
-
 SELECT * FROM DimProduct
 WHERE ProductSubcategoryKey = 
 	(SELECT ProductSubcategoryKey FROM DimProductSubcategory

@@ -1,6 +1,7 @@
 -- [SQL Server] [Subqueries e CTE's] Aula 12 e 13 de 28: Subquery aninhada
 
 -- Exemplo: Descubra os nomes dos clientes que ganham o segundo maior salário.
+USE ContosoRetailDW
 
 SELECT * FROM DimCustomer
 WHERE CustomerType = 'Person'

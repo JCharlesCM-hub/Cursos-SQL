@@ -6,6 +6,11 @@
 
 -- Por fim, faça um INNER JOIN dessas tabelas
 
+-- USAR o BD Contoso
+-- USE ContosoRetailDW
+
+-- SELECT TOP(5) * FROM DimProduct
+GO
 WITH produtos_contoso AS (
 	SELECT
 		ProductKey,

@@ -1,7 +1,6 @@
 -- [SQL Server] CRUD
 -- Aula 14 de 21 - ALTER TABLE
 
-
 -- ALTER TABLE: Adicionando, deletar ou modificar tipo de dados de uma coluna
 
 -- Adicionar coluna:
@@ -20,9 +19,7 @@ SELECT * FROM Funcionarios
 ALTER TABLE Funcionarios
 ALTER COLUMN salario int
 
-
 -- Deletar coluna:
-
 
 ALTER TABLE Funcionarios
 DROP COLUMN cargo, bônus

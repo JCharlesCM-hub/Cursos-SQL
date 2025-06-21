@@ -12,7 +12,6 @@ WITH cte(Marca, Total) AS (
 		BrandName
 )
 
-
 SELECT
 	Marca,
 	Total
