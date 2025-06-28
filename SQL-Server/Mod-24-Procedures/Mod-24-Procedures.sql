@@ -163,16 +163,6 @@ Diferença 2.
 Diferença 3.
 - Procedures não precisam retornar nenhum valor
 - Functions precisam retornar algum valor
-
-
-
-
-
-
-
-
-
-
 */
 
 
