@@ -1,4 +1,8 @@
--- MOD - 26 - Pivot Table
+/*  
+MOD - 26 - Pivot Table
+*/
+USE ContosoRetailDW
+
 -- Operador Pivot 
 
 -- 1. O que o Operador Pivot faz
@@ -24,11 +28,11 @@ GROUP BY BrandName
 -- 3º) Agora sim podemos aplicar o Pivot, incluindo o cálculo desejado e os nomes das colunas a serem consideradas
 
 SELECT * FROM
-(SELECT
-	ProductKey,
-	BrandName
-FROM
-	DimProduct) AS Dados
+	(SELECT
+		ProductKey,
+		BrandName
+	FROM
+		DimProduct) AS Dados
 PIVOT(
 	COUNT(ProductKey)
 	FOR BrandName
@@ -118,7 +122,7 @@ PIVOT (
 		, [Shipping and Receiving]
 		, [Tool Design])
 		) AS PivotTable
-ORDER BY Ano
+ORDER BY Ano, Mes
 
 -- Corrigindo a limitação da Pivot Table
 
@@ -135,8 +139,7 @@ SET @NomeColunas = LEFT(@NomeColunas, LEN(@NomeColunas) - 1)
 
 -- PRINT @NomeColunas
 
-SET @SQL=
-'SELECT * FROM
+SET @SQL = 'SELECT * FROM
 	(SELECT
 		EmployeeKey,
 		YEAR(HireDate) AS Ano,
@@ -150,6 +153,9 @@ PIVOT (
 	IN (' + @NomeColunas + ')
 		) AS PivotTable
 ORDER BY Ano'
+
+-- Até aqui é para vê o @SQL
+PRINT @SQL
 
 EXECUTE sp_executesql @SQL
 
