@@ -1,5 +1,5 @@
 /*  
-MOD - 26 - Pivot Table
+MOD - 27 - Pivot Table
 */
 USE ContosoRetailDW
 
@@ -26,6 +26,11 @@ GROUP BY BrandName
 -- 2º) Como não conseguimos aplicar o Pivot diretamente nos dados acima, precisaremos fazer isso indiretamente
 
 -- 3º) Agora sim podemos aplicar o Pivot, incluindo o cálculo desejado e os nomes das colunas a serem consideradas
+
+-- Selecionar os departamentos
+SELECT DISTINCT 
+	', ' + QUOTENAME(TRIM(DepartmentName)) -- Coloca os colchetes
+FROM DimEmployee
 
 SELECT * FROM
 	(SELECT
@@ -121,7 +126,7 @@ PIVOT (
 		, [Sales]
 		, [Shipping and Receiving]
 		, [Tool Design])
-		) AS PivotTable
+) AS PivotTable
 ORDER BY Ano, Mes
 
 -- Corrigindo a limitação da Pivot Table
@@ -138,7 +143,7 @@ FROM
 SET @NomeColunas = LEFT(@NomeColunas, LEN(@NomeColunas) - 1)
 
 -- PRINT @NomeColunas
-
+-- Transforma em testo a instrução
 SET @SQL = 'SELECT * FROM
 	(SELECT
 		EmployeeKey,
@@ -156,7 +161,7 @@ ORDER BY Ano'
 
 -- Até aqui é para vê o @SQL
 PRINT @SQL
-
+-- Story Procedure
 EXECUTE sp_executesql @SQL
 
 -- ********************************
@@ -172,7 +177,7 @@ FROM
 
 SET @NomeColunas2 = LEFT(@NomeColunas2, LEN(@NomeColunas2) - 1)
 
--- PRINT @NomeColunas2
+PRINT @NomeColunas2
 
 SET @SQL2 = 
 'SELECT * FROM
@@ -189,5 +194,7 @@ PIVOT (
 	IN (' + @NomeColunas2 + ')
 ) AS PivotTable
 ORDER BY Ano DESC'
+
+PRINT @SQL2
 
 EXECUTE sp_executesql @SQL2
