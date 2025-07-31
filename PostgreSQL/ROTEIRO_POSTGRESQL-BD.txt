@@ -1,0 +1,74 @@
+ROTEIRO DO CURSO DE BD POSTGRESQL - HASHTAG - J2CM
+
+47. [PostgreSQL] Instalação do PostgreSQL
+1. Introdução
+2. Instalação do Postgresql
+3. Criando as tabelas do BD Northwind
+
+
+1º - CRIE UM REPOSITORIO NO GITHUB.COM 
+
+2º - COPIAR A URL PARA CRIAÇÃO DO REPOSITORIO LOCAL
+     - CODIGO
+        - Copiar a URL para criação do Repositório LOCAL
+            - https://github.com/JCharlesCM-hub/Cursos-SQL.git
+
+3º - ABRIR A PASTA DO REPOSITORIO LOCAL COM O VISUAL CODE - VSCODE
+    - Vá até a pasta criada para o repositório local com o Windows Explorer
+        - Selecione a barra de endereço e digite $ CMD
+            - Depois digite $ CODE . (abrirar o VSCODE)
+
+4º - AO ABRIR O VSCODE
+    - Clicar em Terminal / Novo Terminal
+        - Ao abrir o terminal no lado direito na seta(+V) para abrir o Terminal bash
+            - Clique em bash e abrirá o terminal $
+                - $ git clone https://github.com/jcharlescm/Curso-SQL.git
+
+4º – INSTALAR O POSTGRESQL
+	- No GOOGLE pesquisar por POSTGRESQL
+	- https://www.postgresql.org/download/ 
+		- Downloads da Comunidade POSTGRESQL para Windows
+			- Baixar Arquivo ZIP EDB
+				- "Baixe o instalador" certificado pela EDB para todas as versões suportadas do Postgres.
+				- Binários do instalador versão 17.5 para windows
+				- Copiei para: F:\MeusArq\Cursos\Curso_SQL\Banco-POSTGRESQL
+			- Instalador POSTGRESQL para Windows
+			- Windows (x86, 32 bits), instalador EDB
+
+			- Não fazer login:
+				Não, obrigado, apenas inicie meu download.
+
+5º – Baixa e copiar para:
+	F:\MeusArq\Cursos\Curso_SQL\Banco-POSTGRESQL
+	- Tutorial de POSTGRESQL
+	- https://www.devmedia.com.br/postgresql-tutorial/
+
+6º – Executar o arquivo e next, next ….
+	- Instalar a versão completa
+	Senha: j2cm1928
+	- Next, next… informar a senha novamente e checar, next..
+
+7º – Abrir o POSTGRESQL ou pgAdmin
+	- Clicar em pesquisa e digitar pgAdmin
+	- Ao abrir o pgAdmin clicar em Servers(parte superior esquerda > seta) e informar a senha: j2cm1928
+	
+8º - Criar Object ou Database
+	- Clicar em Criete / Database 
+	- Colocar o nome de "northwind" e SAVE, criou o BD northwind.
+	- https://github.com/pthom/northwind_psql -- Link para a importação das tabelas
+		- Clica no arquivo northwind.sql no github para abrir e copiar os codigos para o POSTGRESQL
+		- Clicar em RAW, na parte superior direita
+		- Selecione o texto do arquivo northwind.sql e copie
+	- No pgAdmin clicar no banco e depois em "Query Tool" e colar o conteudo 
+	- Executar o script ou F5 
+	- Clicar com o btn direito no BD northwind e na opção REFRESH, para atualizar
+	- Clica com btn esquerdo no BD northwind / SCHEMAS / TABLES, estam as tabelas importtadas - ok
+	- Com o btn direito pode ver o conteudo das tabelas em "View / Edit Data / Rows "
+	
+48. [PostgreSQL] Criando queries básicas no Postgres
+1. SELECT FROM - Selecionando dados das tabelas
+2. Comentários no PostgreSQL
+3. SELECT AS - Aliasing (renomeando) colunas
+4. SELECT LIMIT - Limitando a quantidade de linhas de uma query
+5. SELECT DISTINCT - Selecionando valores distintos de uma coluna
+Feedback do módulo
