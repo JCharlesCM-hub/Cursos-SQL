@@ -72,3 +72,340 @@ ROTEIRO DO CURSO DE BD POSTGRESQL - HASHTAG - J2CM
 4. SELECT LIMIT - Limitando a quantidade de linhas de uma query
 5. SELECT DISTINCT - Selecionando valores distintos de uma coluna
 Feedback do módulo
+
+49. [PostgreSQL] Filtros no Postgres
+1. WHERE - Filtros com textos
+2. WHERE - Filtros com números e datas
+3. WHERE - Operadores AND e OR
+4. WHERE e LIKE - Filtros especiais com textos
+5. WHERE e IN - Uma alternativa aos múltiplos ORs
+6. WHERE e BETWEEN - Filtrando intervalos
+
+-- MÓDULO POSTGRESQL
+
+-- ## WHERE ## --
+-- Permite criar filtros nas consultas. Obs.: O Postgres é case-sensitive.
+
+-- 1. Selecione a tabela customers
+-- a) Crie um filtro para que sejam mostrados apenas os clientes com contact_title = 'Owner'.
+SELECT * FROM customers
+WHERE contact_title = 'Owner';
+
+-- b) Crie um filtro para que sejam mostrados apenas os clientes do país France.
+SELECT * FROM customers
+WHERE country = 'France';
+
+-- 2. Selecione a tabela products
+-- a) Crie um filtro para que sejam mostrados os produtos com estoque igual a zero (units_in_stock).
+-- b) Crie um filtro para mostrar os produtos com unit_price maior ou igual a 50.
+SELECT * FROM products
+WHERE units_in_stock = 0;
+
+SELECT * FROM products
+WHERE unit_price >= 50
+ORDER BY unit_price DESC;
+
+-- 3. Selecione a tabela orders
+-- Crie um filtro para mostrar apenas os pedidos feitos depois do dia '01/01/1998'.
+SELECT * FROM orders
+WHERE order_date >= '1998-01-01';
+
+-- ## WHERE + AND e OR ## --
+-- Permite criar filtros com mais de uma coluna.
+-- AND: o filtro será realizado se todas as condições forem verdadeiras.
+-- OR: o filtro será realizado desde que PELO MENOS 1 condição seja verdadeira.
+
+-- 1. Selecione a tabela customers
+-- a) Crie um filtro para que sejam mostrados apenas os clientes com contact_title = 'Owner' E do país France.
+
+SELECT * FROM customers
+WHERE contact_title = 'Owner' AND country = 'France';
+
+-- b) Crie um filtro para que sejam mostrados apenas os clientes do Mexico OU France.
+
+SELECT * FROM customers
+WHERE country = 'Mexico' OR country = 'France';
+
+-- ## WHERE + LIKE ## --
+-- Permite criar filtros especiais de textos.
+
+-- 1. Selecione a tabela products
+-- a) Quais são os produtos medidos em boxes?
+
+SELECT * FROM products
+WHERE quantity_per_unit LIKE '%boxes%';
+
+-- b) Quais são os produtos medidos em ml?
+
+SELECT * FROM products
+WHERE quantity_per_unit LIKE '%ml%';
+
+-- ## WHERE + IN ## --
+-- Essa combinação é uma alternativa ao uso de múltiplos OR.
+
+-- 1. Selecione a tabela customers
+-- a) Quais clientes são dos países 'Mexico', 'UK', 'Canada' (utilize o método OR para resolver)
+SELECT * FROM customers
+WHERE country = 'Mexico' OR country = 'UK' OR country = 'Canada';
+
+-- b) Quais clientes são dos países 'Mexico', 'UK', 'Canada' (utilize o método IN para resolver)
+SELECT * FROM customers
+WHERE country IN ('Mexico', 'UK', 'Canada');
+
+-- ## WHERE + BETWEEN ## --
+-- Essa combinação é uma alternativa ao uso do AND para filtrar intervalos de números e datas.
+
+-- 1. Selecione a tabela products
+-- a) Quais produtos têm um unit_price entre 50 e 100 (utilize o método AND para resolver)
+
+SELECT * FROM products
+WHERE unit_price >= 50 AND unit_price <= 100;
+
+-- b) Quais produtos têm um unit_price entre 50 e 100 (utilize o método BETWEEN para resolver)
+SELECT * FROM products
+WHERE unit_price BETWEEN 50 AND 100;
+
+-- 2. Selecione a tabela orders
+-- a) Quais pedidos foram feitos entre 01/01/1997 e 31/12/1997 (utilize o método AND para resolver)
+SELECT * FROM orders
+WHERE order_date >= '1997-01-01' AND order_date <= '1997-12-31';
+
+-- b) Quais pedidos foram feitos entre 01/01/1997 e 31/12/1997 (utilize o método BETWEEN para resolver)
+SELECT * FROM orders
+WHERE order_date BETWEEN '1997-01-01' AND '1997-12-31
+
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+54. [PostgreSQL] Funções de Número, Texto e Data
+1. Funções de Número - Ceiling, Floor, Round, Trunc
+2. Funções de Texto - Upper, Lower, Length, Initcap, Replace, Substring e Strpos
+3. Funções de Data - Current_Date, Age, Date_Part
+Feedback do módulo
+-- 
+
+/*
+Em PostgreSQL, as funções CEILING, FLOOR, ROUND e TRUNC são usadas para manipular números e arredondá-los. CEILING retorna o menor inteiro maior ou igual ao número dado. FLOOR retorna o maior inteiro menor ou igual ao número dado. ROUND arredonda para o inteiro mais próximo ou para um número específico de casas decimais. TRUNC remove a parte decimal do número, truncando-o para um número inteiro ou para um número específico de casas decimais. 
+Funções de Arredondamento:
+CEILING(number):
+Arredonda o número para cima, para o inteiro mais próximo maior ou igual ao número original. Por exemplo, CEILING(4.2) retornará 5. 
+FLOOR(number):
+Arredonda o número para baixo, para o inteiro mais próximo menor ou igual ao número original. Por exemplo, FLOOR(4.7) retornará 4. 
+ROUND(number, precision):
+Arredonda o número para o inteiro mais próximo ou para o número especificado de casas decimais. O parâmetro precision (opcional) indica quantas casas decimais manter após o arredondamento. Se precision for omitido, arredonda para o inteiro mais próximo. Por exemplo, ROUND(4.678, 2) retornará 4.68, enquanto ROUND(4.2) retornará 4. 
+TRUNC(number, precision):
+Trunca o número para o número especificado de casas decimais, removendo a parte decimal. O parâmetro precision (opcional) indica quantas casas decimais manter após o truncamento. Se precision for omitido, remove a parte decimal. Por exemplo, TRUNC(4.678, 2) retornará 4.67, enquanto TRUNC(4.678) retornará 4. 
+Exemplos:
+Código
+
+SELECT CEILING(4.2); -- Retorna 5
+SELECT FLOOR(4.7);  -- Retorna 4
+SELECT ROUND(4.678, 2); -- Retorna 4.68
+SELECT ROUND(4.2);  -- Retorna 5
+SELECT TRUNC(4.678, 2); -- Retorna 4.67
+SELECT TRUNC(4.678); -- Retorna 4
+Observações:
+As funções CEILING e FLOOR sempre retornam um inteiro, independentemente do número de casas decimais do argumento. 
+A função ROUND arredonda para cima ou para baixo, com base no valor da casa decimal mais significativa ignorada. 
+A função TRUNC remove a parte decimal sem arredondar, sempre truncando o número para o número especificado de casas decimais ou para um inteiro. 
+A função TRUNC pode ser usada com um parâmetro de precisão negativo, onde nesse caso, ela define para 0 os dígitos à direita da vírgula decimal e substitui os dígitos à esquerda da vírgula decimal, com base no número de casas decimais especificado (positivo), Neon Postgres. 
+*/
+
+/*
+Em PostgreSQL, as funções UPPER, LOWER, LENGTH e INITCAP são usadas para manipulação de strings. UPPER converte uma string para maiúsculas, LOWER para minúsculas, LENGTH retorna o comprimento da string e INITCAP converte a primeira letra de cada palavra para maiúscula e o restante para minúscula. 
+Exemplos:
+UPPER(string): Converte a string para maiúsculas. 
+Código
+
+    SELECT UPPER('hello world');
+    -- Resultado: HELLO WORLD
+LOWER(string): Converte a string para minúsculas. 
+Código
+
+    SELECT LOWER('HELLO WORLD');
+    -- Resultado: hello world
+LENGTH(string): Retorna o número de caracteres na string. 
+Código
+
+    SELECT LENGTH('hello'); -- Resultado: 5
+INITCAP(string): Converte a primeira letra de cada palavra para maiúscula e o restante para minúscula. 
+Código
+
+    SELECT INITCAP('hello world'); -- Resultado: Hello World
+Observações:
+As funções UPPER e LOWER são sensíveis à localidade, ou seja, o comportamento pode variar dependendo da configuração de localidade do banco de dados. 
+A função INITCAP considera palavras como sequências de caracteres delimitadas por espaços ou outros caracteres não alfanuméricos. 
+Essas funções são frequentemente usadas para formatação de texto, comparação de strings (especialmente quando ignorando maiúsculas/minúsculas) e preparação de dados para exibição. 
+*/
+/*
+Em PostgreSQL, a função REPLACE é usada para substituir todas as ocorrências de uma substring em uma string por outra substring. A sintaxe básica é REPLACE(string, substring_antiga, nova_substring). Essa função é útil para limpeza de dados, formatação de texto e outras tarefas de manipulação de strings. 
+Sintaxe:
+Código
+
+REPLACE(string, substring_antiga, nova_substring)
+Parâmetros:
+string: A string onde a substituição será realizada.
+substring_antiga: A substring que será substituída.
+nova_substring: A substring que substituirá a antiga. 
+Exemplos:
+Substituindo texto:
+Código
+
+SELECT REPLACE('Olá, mundo!', 'mundo', 'PostgreSQL');
+-- Resultado: 'Olá, PostgreSQL!'
+Substituindo múltiplos caracteres:
+Código
+
+SELECT REPLACE('banana', 'na', 'ta');
+-- Resultado: 'batata'
+Substituindo em uma tabela:
+Código
+
+UPDATE sua_tabela
+SET coluna_texto = REPLACE(coluna_texto, 'texto_antigo', 'texto_novo')
+WHERE condição;
+A função REPLACE é case-sensitive, ou seja, diferencia maiúsculas de minúsculas. Se você precisar de uma substituição que não diferencia maiúsculas de minúsculas, pode ser necessário usar outras abordagens, como combinar funções de conversão de caixa com a função REPLACE ou utilizar expressões regulares. 
+*/
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+/*
+Em PostgreSQL, a função substring extrai uma parte de uma string, enquanto strpos (ou position) retorna a posição de uma substring dentro de outra. 
+Função SUBSTRING()
+A função substring() permite extrair uma parte de uma string, especificando a posição inicial e o comprimento da substring desejada. 
+*/
+substring(string, start_position, length)
+/*
+string: A string da qual você deseja extrair a substring.
+start_position: A posição inicial da substring (o primeiro caractere é a posição 1).
+length: O número de caracteres a serem extraídos. Se omitido, a função extrai até o final da string a partir da posição inicial. 
+Exemplos:
+*/
+SELECT substring('Olá, mundo!', 1, 5); -- Resultado: 'Olá, '
+SELECT substring('Olá, mundo!', 7);     -- Resultado: 'mundo!'
+SELECT substring('PostgreSQL', 1, 4);   -- Resultado: 'Post'
+Função STRPOS() (ou POSITION())
+/*
+A função strpos() (ou position()) retorna a posição inicial de uma substring dentro de uma string. 
+*/
+strpos(string, substring)
+-- ou
+position(substring in string)
+/*
+string: A string na qual você deseja procurar. 
+substring: A substring que você está procurando. 
+Exemplos:
+*/
+SELECT strpos('Olá, mundo!', 'mundo');  -- Resultado: 7
+SELECT position('mundo' in 'Olá, mundo!'); -- Resultado: 7
+SELECT strpos('PostgreSQL', 'Post');    -- Resultado: 1
+SELECT strpos('PostgreSQL', 'Java');     -- Resultado: 0 (não encontrado)
+/*
+Diferenças e similaridades entre as funções
+substring() extrai uma parte da string, enquanto strpos() (ou position()) localiza a posição de uma substring. 
+substring() requer um início e um comprimento (ou apenas um início) para extrair a substring. strpos() (ou position()) requer apenas a substring a ser procurada e a string onde procurar. 
+strpos() (ou position()) retorna 0 se a substring não for encontrada. 
+substring() pode retornar uma string vazia ou NULL se a posição inicial for inválida ou o comprimento exceder o tamanho da string.
+Observação: Em alguns casos, você pode precisar usar a função regexp_substr para extrair substrings com base em expressões regulares. 
+*/
+
+-- ++++++++++++++++++++++++++++++++++++++++++++++
+/*
+Em PostgreSQL, as funções CURRENT_DATE, AGE e DATE_PART são usadas para manipular e extrair informações de datas e horários. CURRENT_DATE retorna a data atual, AGE calcula a diferença entre duas datas como um intervalo, e DATE_PART extrai uma parte específica de uma data ou horário. 
+1. CURRENT_DATE: 
+Retorna a data atual no fuso horário da sessão do banco de dados.
+É uma função simples que não requer argumentos e retorna um valor do tipo DATE.
+Exemplo: SELECT CURRENT_DATE;
+2. AGE: 
+Calcula a diferença entre duas datas ou horários e retorna um intervalo.
+Sintaxe: AGE(data_fim, data_inicio) ou AGE(data) (onde a data atual é usada como data_fim).
+Exemplo: SELECT AGE('2024-07-31', '2000-01-01'); (retorna um intervalo de 24 anos, 6 meses e 30 dias).
+3. DATE_PART:
+Extrai uma parte específica de um valor de data ou horário. 
+Sintaxe: DATE_PART('campo', data_ou_horario). 
+campo especifica qual parte extrair (ex: 'year', 'month', 'day', 'hour', 'minute', etc.). 
+Exemplo: SELECT DATE_PART('year', '2024-07-31 10:30:00'); (retorna 2024). 
+Outros valores permitidos para campo: 'century', 'decade', 'millisecond', 'microsecond', 'dow', 'doy', 'epoch', 'isodow', 'isoyear', 'timezone', 'timezone_hour', 'timezone_minute'. 
+Exemplo prático usando as três funções:
+Código
+
+SELECT
+    CURRENT_DATE,
+    AGE('2024-07-31', '2000-01-01') AS idade,
+    DATE_PART('year', '2024-07-31 10:30:00') AS ano,
+    DATE_PART('month', '2024-07-31 10:30:00') AS mes,
+    DATE_PART('day', '2024-07-31 10:30:00') AS dia;
+Este exemplo mostra como usar as três funções em uma única consulta para obter a data atual, a idade calculada a partir de duas datas, e o ano, mês e dia de uma data específica. 
+*/
+
+-- +++++++++++++++++++++++++++++++++
+/*
+55. [PostgreSQL] Subqueries
+1. O que é uma Subquery
+2. Subquery: Cláusula WHERE
+3. Subquery: Cláusula FROM
+4. Subquery: Cláusula SELECT
+5. Subquery: Corrigindo a análise de pedidos acima da média
+Feedback do módulo
+*/
+/*
+Em PostgreSQL, uma subquery, também conhecida como subseleção ou consulta aninhada, é uma consulta SQL que está inserida dentro de outra consulta, seja ela uma instrução SELECT, INSERT, UPDATE ou DELETE. Basicamente, a subquery é executada primeiro, e o resultado que ela retorna é utilizado pela consulta principal. 
+Em termos mais simples: Imagine uma receita de bolo. A subquery é como misturar os ingredientes antes de colocar a massa no forno (a consulta principal). Você precisa ter os ingredientes certos (o resultado da subquery) para poder fazer o bolo (a consulta principal). 
+Características:
+Aninhamento:
+Subqueries são sempre inseridas dentro de outras consultas, criando um nível de aninhamento. 
+Execução:
+A subquery é executada primeiro e seu resultado é usado pela consulta principal. 
+Utilização:
+Podem ser usadas em diversas partes de uma consulta, como na cláusula WHERE, FROM, SELECT, entre outras. 
+Finalidade:
+Permitem realizar operações mais complexas e sofisticadas, que seriam difíceis ou impossíveis de serem feitas com uma única consulta. 
+Exemplos de uso:
+Filtragem de dados: Usar o resultado de uma subquery para filtrar os dados da consulta principal. 
+Cálculos complexos: Realizar cálculos complexos utilizando o resultado de uma subquery. 
+Inserção, atualização e exclusão: Usar o resultado de uma subquery para inserir, atualizar ou excluir dados em uma tabela. 
+Exemplo prático:
+Suponha que você queira encontrar os produtos que têm o maior preço em uma tabela de produtos. Você poderia usar uma subquery para encontrar o preço máximo e, em seguida, usar essa informação na consulta principal para selecionar os produtos com esse preço. 
+Vantagens:
+Flexibilidade:
+Permite criar consultas mais complexas e adaptáveis a diferentes cenários. 
+Reutilização:
+O resultado de uma subquery pode ser reutilizado em várias partes da consulta principal. 
+Legibilidade:
+Em alguns casos, pode tornar a consulta mais legível, especialmente quando a lógica é complexa. 
+Desvantagens:
+Desempenho:
+Em alguns casos, subqueries podem ter um impacto negativo no desempenho da consulta, especialmente se não forem otimizadas. 
+Complexidade:
+Consultas com muitas subqueries podem se tornar difíceis de entender e manter. 
+Em resumo, subqueries são uma ferramenta poderosa no PostgreSQL para lidar com consultas complexas e flexíveis. No entanto, é importante usá-las com cuidado e otimizá-las para garantir o melhor desempenho. 
+*/
+
+/*  
+56. [PostgreSQL] Variáveis e Blocos Anônimos
+1. Variáveis, Datatypes e Blocos Anônimos
+2. Blocos Anônimos - Exemplos
+Feedback do módulo
+*/
+/*
+Em PostgreSQL, variáveis são espaços de memória nomeados utilizados para armazenar dados dentro de um bloco de código, como funções ou blocos anônimos. Tipos de dados (datatypes) definem o tipo de valor que uma variável pode conter (inteiro, texto, etc.). Blocos anônimos são trechos de código que podem ser executados sem a necessidade de serem definidos como uma função ou procedimento, permitindo a execução de código procedural dentro do PostgreSQL. 
+Variáveis:
+São usadas para armazenar valores temporários durante a execução de um bloco de código PL/pgSQL.
+Devem ser declaradas antes de serem usadas, especificando seu nome e tipo de dado.
+Podem ter um valor inicial definido ou receber um valor posteriormente.
+O escopo de uma variável é limitado ao bloco em que ela é declarada. 
+Tipos de Dados:
+Definem o tipo de dado que uma variável pode armazenar, como números inteiros (INTEGER), textos (VARCHAR), datas (DATE), etc.
+Permitem que o PostgreSQL valide os valores atribuídos às variáveis, garantindo a integridade dos dados.
+Exemplos comuns incluem INTEGER, VARCHAR, BOOLEAN, DATE, TIMESTAMP, e muitos outros. 
+Blocos Anônimos:
+São trechos de código PL/pgSQL que podem ser executados diretamente, sem a necessidade de estarem associados a uma função ou procedimento.
+Geralmente usados para realizar tarefas pontuais ou testes.
+Possuem uma seção de declaração (opcional) onde as variáveis são declaradas, e uma seção de corpo onde o código é executado.
+Sintaxe básica: 
+Código
+
+    <<nome_do_bloco>>
+    DECLARE
+        -- Declaração de variáveis
+    BEGIN
+        -- Código a ser executado
+    END;
+O ponto e vírgula (;) é obrigatório ao final de cada instrução dentro do bloco
+*/
