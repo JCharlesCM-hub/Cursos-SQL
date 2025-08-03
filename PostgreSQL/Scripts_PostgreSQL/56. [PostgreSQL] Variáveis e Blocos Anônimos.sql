@@ -94,9 +94,7 @@ begin
 
 end $$;
 
-
 -- Exemplo 2: Quantos produtos têm o preço acima da média de preços?
-
 do $$
 declare
     media_preco decimal;
@@ -109,3 +107,4 @@ begin
     raise notice 'A quantidade de produtos com preço acima da média é de: % produtos.', qtd_produtos_acima_media;
     
 end $$;
+

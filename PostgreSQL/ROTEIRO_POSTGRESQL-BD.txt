@@ -409,3 +409,31 @@ Código
     END;
 O ponto e vírgula (;) é obrigatório ao final de cada instrução dentro do bloco
 */
+
+/*
+57. [PostgreSQL] Functions
+1. O que é e como criar uma Function
+2. Formas de chamar uma Function e como excluir uma Function
+3. Functions que retornam uma tabela e como copiar tipo de dados para uma variável
+Feedback do módulo
+*/
+
+
+/*  
+58. [PostgreSQL] Transactions e Procedures
+1. O que é uma Transação?
+2. O que é, como criar e excluir uma Procedure
+3. Exemplo - Procedure para registro de transferência bancária
+Feedback do módulo
+*/
+
+
+/*
+60. [Oracle] Introdução ao Curso Oracle Database
+1. O que veremos no curso
+2. Conceitos Básicos de Bancos de Dados Relacionais
+3. História da linguagem SQL e SQL Oracle vs SQL ANSI
+4. Dicionário SQL
+5. Resumo do Módulo
+Feedback do módulo
+*/
