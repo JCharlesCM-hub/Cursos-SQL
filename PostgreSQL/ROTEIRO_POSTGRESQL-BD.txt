@@ -437,3 +437,86 @@ Feedback do módulo
 5. Resumo do Módulo
 Feedback do módulo
 */
+
+Sistema de Gerenciamento de Banco de Dados Relacional (SGBDR)
+
+sistema gerenciador de banco de dados relacional (SGBDR)
+
+-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+/*
+61. [Oracle] Instalação Oracle Database e SQL Developer
+1. Criando conta gratuita no site da Oracle
+2. Download e Instalação do Oracle Database 21c XE
+3. Download e Instalação do Oracle SQL Developer
+*/
+
+INSTALANDO O Oracle
+
+1º -  Acessar o site oracle.com/br
+	- Ir em recursos / downloads / downloads desenvolvedores / 
+		- Baixar ORACLE Database
+		- BAixar SQL DEVELOPER
+		
+2º - Tem que criar uma conta no ORACLE.COM para poder instalar os aplicativos acima.
+	- Clicar em exibir contas / Conta do Oracle / Criar um Conta 
+		ou Fazer Login se já tiver conta.
+	- Criei minha Conta com a senha: J2cm@1928, confimei no meu email - ok.
+
+3º - Após criar a conta faça login	
+	- Clique em Recursos / downloads / Downloads do Desenvolvedor
+		2. Download e Instalação do Oracle Database 21c XE
+		- Baixar ORACLE Database para a pasta F:\MeusArq\Cursos\Curso_SQL\Banco-ORACLE
+		- Pesquisar no google por Oracle Database 21 ou 23, sites recomendados:
+			- Pesquisar por "download oracle database express edition" no GOOGLE, clicar na opção DOWNLOAD no resultado.
+			https://www.oracle.com/br/database/technologies/xe-downloads.html
+				-  Clicar em: Oracle Database 21c Express Edition para Windows x64
+		
+			https://www.oracle.com/br/database/technologies/
+
+			https://www.oracle.com/br/database/free/
+
+			WINDOWS
+			Desenvolva com o Oracle Database 23ai para Windows x64. Faça o download no link abaixo.
+			https://www.oracle.com/br/database/free/get-started/#windows
+
+			Fazer o Download --->	Link para fazer o download
+
+			Copiar para uma pasta padrão sua.
+			Descompactar nessa pasta
+			Abrir a pasta e clicar em setup.exe / next / next / informar uma senha: j2cm1928 / next		
+		
+		 3. Download e Instalação do Oracle SQL Developer
+		- BAixar SQL DEVELOPER - F:\MeusArq\Cursos\Curso_SQL\Banco-ORACLE
+			- Windows 64 bits com JDK 17 incluído | 555 MG | MD5, SHA1 e NOTAS DE INSTALAÇÃO
+			-  Copiar para uma pasta padrão sua. 
+				Descompactar nessa pasta F:\MeusArq\Cursos\Curso_SQL\Banco-ORACLE
+				Abrir a pasta F:\MeusArq\Cursos\Curso_SQL\Banco-ORACLE\sqldeveloper-24.3.1.347.1826-x64\sqldeveloper
+				Executar o arquivo: sqldeveloper.exe
+				Criar atalho do sqldeveloper.exe para Area de Trabalho.
+			- Não precisa de instalação é só executar o sqldeveloper.exe.	
+			
+			
+
+62. [Oracle] Administração de Contas de Usuário
+1. O que veremos neste módulo
+2. Contas e Privilégios de Usuários
+3. Criando uma conexão para o usuário sys (DBA) e um usuário teste
+4. Criando o usuário HR e uma conexão para o usuário HR
+5. Criando as tabelas do usuário HR
+Feedback do módulo
+
+
+3. Criando uma conexão para o usuário sys (DBA) e um usuário teste
+	* Executar o arquivo: sqldeveloper.exe na área de trabalho
+	- Clicar em + no canto superior esquerdo.
+	
+Pasta de Destino: 	C:\app\Charlão\product\23ai\
+Oracle Home:      	C:\app\Charlão\product\23ai\
+Oracle Base: 	  	C:\app\Charlão\product\23ai\
+Senha: j2cm1928
+
+netstat -aon | findstr 1521
+
+Pesquisa no GOOGLE?
+Instalação do Oracle database 21c instalando com erros, o que está acontecendo?
