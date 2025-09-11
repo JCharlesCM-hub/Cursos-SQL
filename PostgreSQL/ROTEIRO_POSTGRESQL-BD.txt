@@ -520,3 +520,46 @@ netstat -aon | findstr 1521
 
 Pesquisa no GOOGLE?
 Instalação do Oracle database 21c instalando com erros, o que está acontecendo?
+
+
+Em Oracle, comentários podem ser adicionados tanto em instruções SQL quanto em esquemas/objetos. Para comentários em linha, use -- antes do comentário, e para comentários de várias linhas, use /* */. Além disso, o comando COMMENT ON pode ser usado para adicionar comentários a tabelas e colunas, os quais são armazenados no dicionário de dados. 
+Comentários em Instruções SQL:
+Comentários de uma linha:
+Utilize -- seguido do comentário. Ex: -- Este é um comentário de linha única.
+Comentários de várias linhas:
+Utilize /* para iniciar e */ para finalizar o comentário. Ex: `/* Este é um comentário 
+de múltiplas linhas */`. 
+Comentários em Esquemas/Objetos:
+Comando COMMENT ON: Este comando permite adicionar comentários a tabelas, colunas, views, etc.
+Exemplo: COMMENT ON TABLE ClientesA IS 'Informações sobre os clientes ativos';.
+Você pode visualizar esses comentários usando as views USER_TAB_COMMENTS, USER_COL_COMMENTS, etc. 
+
+
+62. [Oracle] Administração de Contas de Usuário
+1. O que veremos neste módulo
+2. Contas e Privilégios de Usuários
+3. Criando uma conexão para o usuário sys (DBA) e um usuário teste
+4. Criando o usuário HR e uma conexão para o usuário HR
+5. Criando as tabelas do usuário HR
+Feedback do módulo
+
+/*
+3. [Oracle] Primeiros Passos no Oracle SQL Developer
+1. O que veremos neste módulo
+2. Introdução ao SQL e Grupos de Comando
+3. Documentação da Oracle
+4. Conhecendo o Schema HR
+5. Explorando as tabelas do banco de dados HR
+6. Criando a primeira consulta
+7. DESCRIBE_DESC - Exibindo a estrutura de tabelas
+8. SELECT _, SELECT colunas específicas e truque para seleção rápida no Oracle
+9. Formas de executar um código
+10. Comentando códigos no Oracle
+11. Definindo alias para colunas e tabelas
+12. Operador __ (concatenar textos)
+13. Resolvendo o problema do ' dentro de uma string
+14. Cálculos simples no SQL e Tabela Dual
+15. DISTINCT_ Retornando valores distintos de uma coluna
+16. Resumo do Módulo
+Feedback do módulo
+*/
